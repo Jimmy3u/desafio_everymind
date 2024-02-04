@@ -10,19 +10,22 @@ const navLinkClasses = ({ isActive }: any) => {
 };
 
 export default function MainLayout() {
-  const currentTitle = useRouteMetadata()?.title ?? 'My App';
+  const currentTitle = useRouteMetadata()?.title ?? 'Nunes';
   useEffect(() => {
-    document.title = currentTitle;
+    document.title = currentTitle + " - Nunes Sports";
   }, [currentTitle]);
 
   return (
     <AppLayout primarySection="drawer">
       <div slot="drawer" className="flex flex-col justify-between h-full p-m">
         <header className="flex flex-col gap-m">
-          <h1 className="text-l m-0">My App</h1>
+          <h1 className="text-l m-0">Nunes Sports</h1>
           <nav>
             <NavLink className={navLinkClasses} to="/">
               Hello World
+            </NavLink>
+            <NavLink className={navLinkClasses} to="/products">
+              Products
             </NavLink>
             <NavLink className={navLinkClasses} to="/about">
               About

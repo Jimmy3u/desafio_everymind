@@ -1,6 +1,8 @@
 package com.everymind.nunes.models;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
@@ -8,17 +10,21 @@ import jakarta.persistence.Table;
 @Table(name = "tb_produtos")
 public class Product {
     @Id
-    private long productID;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
     private String productName;
     private String productDesc;
     private Double productPrice;
 
-    public long getProductID() {
-        return productID;
+    public Product() {
     }
 
-    public void setProductID(long productID) {
-        this.productID = productID;
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long productID) {
+        this.id = productID;
     }
 
     public String getProductName() {
@@ -47,7 +53,7 @@ public class Product {
 
     @Override
     public String toString() {
-        return "Product [productID=" + productID + ", productName=" + productName + ", productDesc=" + productDesc
+        return "Product [productID=" + id + ", productName=" + productName + ", productDesc=" + productDesc
                 + ", productPrice=" + productPrice + "]";
     }
 

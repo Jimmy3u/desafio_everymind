@@ -17,16 +17,20 @@ public class ProductListingService {
     public ProductListingService(ProductRepository productRepository) {
         this.productRepository = productRepository;
     }
-
+    /*
+     * Definindo o record do produto para ser utilizado no frontEnd
+     */
     public record ProductRecord(
             Long id,
             @NotNull String productName,
             String productDesc,
             @NotNull double productPrice) {
     }
-
+    /*
+     * Metodo para transformar objetos de produto em Records
+     */
     private ProductRecord toProductRecord(Product p) {
-        return new ProductRecord(p.getProductID(),
+        return new ProductRecord(p.getId(),
                 p.getProductName(),
                 p.getProductDesc(),
                 p.getProductPrice());
@@ -37,15 +41,37 @@ public class ProductListingService {
                 .map(this::toProductRecord).toList();
     }
 
-    public ProductRecord save(ProductRecord product) {
-        var ProductObject = productRepository.findById(product.id).orElseThrow();
+    public ProductRecord updateProduct(ProductRecord product) {
+        /* 
+         * Cria uma variavel p, sem tipo definido para armazenar o produto a ser alterado
+         * e guarda a resposta do metodo save para ser retornada como um record.
+         */
+        var p = productRepository.findById(product.id).orElseThrow();
 
-        ProductObject.setProductName(product.productName);
-        ProductObject.setProductDesc(product.productDesc);
-        ProductObject.setProductPrice(product.productPrice);
+        p.setProductName(product.productName);
+        p.setProductDesc(product.productDesc);
+        p.setProductPrice(product.productPrice);
 
-        var saved = productRepository.save(ProductObject);
+        var saved = productRepository.save(p);
 
         return toProductRecord(saved);
+    }
+
+    public ProductRecord saveProduct(ProductRecord product) {
+        Product p = new Product();
+
+        p.setProductName(product.productName);
+        p.setProductDesc(product.productDesc);
+        p.setProductPrice(product.productPrice);
+
+        var saved = productRepository.save(p);
+
+        return toProductRecord(saved);
+    }
+
+    public ProductRecord deleteProduct(Long id){
+        var p = productRepository.findById(id).orElseThrow();
+        productRepository.delete(p);
+        return toProductRecord(p);
     }
 }
