@@ -7,8 +7,6 @@ import { Button } from "@hilla/react-components/Button.js";
 import { TextField } from "@hilla/react-components/TextField.js";
 import { NumberField } from "@hilla/react-components/NumberField.js";
 
-import { VerticalLayout } from "@hilla/react-components/VerticalLayout.js";
-
 interface ProductFormProps {
   product?: ProductRecord | null;
   onSubmit?: (product: ProductRecord) => Promise<void>;
@@ -28,7 +26,7 @@ export default function ProductEdit({ product, onSubmit }: ProductFormProps) {
       <TextField label="Product Name" {...field(model.productName)} />
       <TextField label="Product Description" {...field(model.productDesc)} />
       <NumberField label="Product price" {...field(model.productPrice)} />
-      <div className="flex gap-m">
+      <div className="flex gap-s">
         <Button onClick={submit} theme="primary">
           Save
         </Button>

@@ -6,4 +6,4 @@ COPY .mvn .mvn
 COPY pom.xml .
 COPY package-lock.json .
 EXPOSE 8080
-ENTRYPOINT [ "./mvnw" ]
+ENTRYPOINT [ "./mvnw", "spring-boot:run", "-Dspring-boot.run.profiles=prod"]

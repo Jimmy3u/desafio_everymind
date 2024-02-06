@@ -8,10 +8,11 @@ import jakarta.validation.constraints.NotNull;
 import com.vaadin.flow.server.auth.AnonymousAllowed;
 
 import dev.hilla.BrowserCallable;
+import dev.hilla.crud.CrudRepositoryService;
 
 @AnonymousAllowed
 @BrowserCallable
-public class ProductListingService {
+public class ProductListingService extends CrudRepositoryService<Product, Long, ProductRepository>{
     private final ProductRepository productRepository;
 
     public ProductListingService(ProductRepository productRepository) {

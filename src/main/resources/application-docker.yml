@@ -2,14 +2,20 @@ server:
     port: 80
 spring:
   datasource:
-    url: jdbc:mariadb://localhost:3306/nunes
+    url: jdbc:mariadb://db:3306/nunes
     username: root
-    password: 
+    password: root
     driverClassName: org.mariadb.jdbc.Driver
   jpa:
     defer-datasource-initialization : true
+    hibernate:
+      ddl-auto: none
   mustache:
     check-template-location: false
+  sql:
+    init:
+      mode: always
+     
 vaadin:
     launch-browser: true
     whitelisted-packages: com.vaadin,org.vaadin,dev.hilla,com.example.application
