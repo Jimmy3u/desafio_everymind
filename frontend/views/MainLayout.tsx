@@ -22,7 +22,7 @@ export default function MainLayout() {
           <h1 className="text-l m-0">Nunes Sports</h1>
           <nav>
             <NavLink className={navLinkClasses} to="/">
-              Hello World
+              Hello
             </NavLink>
             <NavLink className={navLinkClasses} to="/products">
               Products

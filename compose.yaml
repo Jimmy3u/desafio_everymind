@@ -2,7 +2,7 @@ services:
   backend:
     build: .
     ports:
-      - "80:80"
+      - "8080:8080"
     networks:
       - nunesNetwork
     depends_on:
@@ -14,6 +14,7 @@ services:
       MARIADB_DATABASE: nunes
       MARIADB_ROOT_PASSWORD: root
     volumes:
+      # Copia os scripts SQL da pasta DB para ser inicializados com o container do MariaDB
       - ./db:/docker-entrypoint-initdb.d:z
       - dbdata:/var/lib/mysql
     expose:
