@@ -18,7 +18,7 @@ RUN java -Djarmode=layertools -jar ../*.jar extract
 ## Copia os arquivos extraidos do container anterior em um novo
 ## exclusivo para a execução do aplicativo
 FROM eclipse-temurin:17-jre-alpine 
-EXPOSE 8080
+EXPOSE 80
 VOLUME /tmp
 WORKDIR /app
 ARG EXTRACTED=/tmp/build/target/dependency
